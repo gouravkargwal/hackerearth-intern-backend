@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const createError = require("http-errors");
@@ -13,10 +12,6 @@ app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.text({ type: "text/html" }));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
 
 app.use("/", imageRouter);
 app.use((req, res, next) => {
